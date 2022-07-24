@@ -12,3 +12,21 @@ body {
   opacity: 0;
   transition: opacity 1s ease-in-out;
 }
+
+.tooltip {
+  display: inline;
+  position: relative;
+  background: #333;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+  bottom: 10px;
+  color: #fff;
+  content: attr(title);
+  left: -100px;
+  padding: 5px 15px;
+  position: absolute;
+  z-index: 1;
+  width: 220px;
+  max-width: 220px;
+  text-align: center;
+}
