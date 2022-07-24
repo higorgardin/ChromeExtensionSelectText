@@ -16,11 +16,19 @@
       "matches": ["*://*/*"]
     }
   ],
-  "content_scripts":[{
-    "js": ["libs/jquery-1.8.3.min.js"],
-    "css": [ "styles/tooltip.css" ],
-    "run_at": "document_start",
-    "matches": ["*://*/*"],
-    "all_frames": false
-  }]
+  "content_scripts": [
+    {
+      "js": ["libs/jquery-1.8.3.min.js"],
+      "css": ["styles/tooltip.css"],
+      "run_at": "document_start",
+      "matches": ["*://*/*"],
+      "all_frames": false
+    }
+  ],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": "Ctrl+Shift+L",
+      "description": "Toggle dark body"
+    }
+  }
 }
