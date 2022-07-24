@@ -1,6 +1,3 @@
-// Adiciona evento de clique ao botão para selecionar texto
-document.getElementById('selectText').addEventListener('click', insertScript);
-
 // Injeta a função de selecionar o texto
 function insertScript() {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -16,15 +13,13 @@ function insertScript() {
   }, 100);
 }
 
-insertScript();
-
 // Executa a função para selecionar texto
 function loadExtension() {
   /**
    * Personaliza o cursor do mouse
    */
   function setCursor() {
-    const cursorPath = 'img/cursor.png';
+    const cursorPath = 'imgs/cursor.png';
     const cursorUrl = chrome.runtime.getURL(cursorPath);
 
     const elems = document.body.getElementsByTagName('*');
@@ -52,20 +47,21 @@ function loadExtension() {
    * @param {string} text Texto obtido do evento de clique
    */
   function displayTooltip(posX, posY, text) {
-    var fadeDelay = 1000;
-    var fadeDuration = 3000;
+    const fadeDelay = 1000;
+    const fadeDuration = 3000;
 
-    var div = $('<div class="image-wrapper">')
+    const div = $('<div class="tooltip-wrapper">')
       .css({
-        left: posX + 'px',
-        top: posY + 'px',
+        left: `${posX}px`,
+        top: `${posY}px`,
       })
-      .append($(`<span class="tooltip">Copiado: ${text}</span>`))
+      .append($(`<span class="tooltip">SSZZZZACopiado: ${text}</span>`))
       .appendTo(document.body);
 
-    setTimeout(function () {
+    setTimeout(() => {
       div.addClass('fade-out');
-      setTimeout(function () {
+
+      setTimeout(() => {
         div.remove();
       }, fadeDuration);
     }, fadeDelay);
@@ -79,13 +75,9 @@ function loadExtension() {
      * @param {Event} e
      */
     function clickListener(e) {
-      e = e || window.event;
       e.preventDefault();
-      const target = e.target || e.srcElement;
-      const text = target.textContent || target.innerText;
-
-      console.log(target);
-      console.log(text);
+      const target = e.target;
+      const text = target.innerText || target.textContent;
 
       navigator.clipboard.writeText(text);
 
@@ -111,3 +103,7 @@ function loadExtension() {
   setCursor();
   registerListeners();
 }
+
+// Adiciona evento de clique ao botão para selecionar texto
+document.getElementById('selectText').addEventListener('click', insertScript);
+insertScript();

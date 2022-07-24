@@ -8,11 +8,11 @@
   "action": {
     "default_title": "Nexus Text Selector",
     "default_popup": "index.html",
-    "default_icon": "img/cursor.png"
+    "default_icon": "imgs/cursor.png"
   },
   "web_accessible_resources": [
     {
-      "resources": ["img/*", "libs/*", "styles/*"],
+      "resources": ["imgs/*", "libs/*", "styles/*"],
       "matches": ["*://*/*"]
     }
   ],

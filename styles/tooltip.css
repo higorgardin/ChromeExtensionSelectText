@@ -2,13 +2,13 @@ body {
   position: relative;
 }
 
-.image-wrapper {
+.tooltip-wrapper {
   position: absolute;
   transform: translate(-50%, -50%);
   opacity: 1;
 }
 
-.image-wrapper.fade-out {
+.tooltip-wrapper.fade-out {
   opacity: 0;
   transition: opacity 1s ease-in-out;
 }
@@ -23,7 +23,7 @@ body {
   color: #fff;
   content: attr(title);
   left: -100px;
-  padding: 5px 15px;
+  padding: 10px 15px;
   position: absolute;
   z-index: 1;
   width: 220px;
