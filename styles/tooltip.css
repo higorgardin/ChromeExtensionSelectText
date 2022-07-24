@@ -1,0 +1,14 @@
+body {
+  position: relative;
+}
+
+.image-wrapper {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+.image-wrapper.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
