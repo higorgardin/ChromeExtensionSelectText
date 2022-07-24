@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Nexus Text Selector",
+  "version": "1.0.0",
+  "description": "Ferramenta para selecionar textos de grids",
+  "author": "Higor Gardin",
+  "permissions": ["scripting", "activeTab", "storage"],
+  "action": {
+    "default_title": "Nexus Text Selector",
+    "default_popup": "index.html",
+    "default_icon": "img/cursor.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["img/*", "libs/*", "styles/*"],
+      "matches": ["*://*/*"]
+    }
+  ],
+  "content_scripts":[{
+    "js": ["libs/jquery-1.8.3.min.js"],
+    "css": [ "styles/tooltip.css" ],
+    "run_at": "document_start",
+    "matches": ["*://*/*"],
+    "all_frames": false
+  }]
+}
