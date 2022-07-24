@@ -1,0 +1,17 @@
+html {
+  width: 400px;
+}
+
+body {
+  font-family: Helvetica, sans-serif;
+}
+
+h2 {
+  text-align: center;
+}
+
+#selectText {
+  border-radius: 0px;
+  width: 100%;
+  padding: 10px 0px;
+}
