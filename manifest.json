@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Nexus Text Selector",
   "version": "1.0.0",
-  "description": "Ferramenta para selecionar textos de grids",
+  "description": "Ferramenta de seleção de textos",
   "author": "Higor Gardin",
   "permissions": ["scripting", "activeTab", "storage"],
   "action": {
@@ -30,5 +30,10 @@
       "suggested_key": "Ctrl+Shift+L",
       "description": "Toggle dark body"
     }
+  },
+  "icons": {
+    "16": "imgs/cursor16.png",
+    "48": "imgs/cursor32.png",
+    "128": "imgs/cursor128.png"
   }
 }
