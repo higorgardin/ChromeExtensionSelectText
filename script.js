@@ -8,9 +8,7 @@ function insertScript() {
   });
 
   // Fecha a janela da extensão ao carrega-la
-  setTimeout(() => {
-    window.close();
-  }, 100);
+  setTimeout(() => window.close(), 100);
 }
 
 // Executa a função para selecionar texto
@@ -22,22 +20,18 @@ function loadExtension() {
     const cursorPath = 'imgs/cursor.png';
     const cursorUrl = chrome.runtime.getURL(cursorPath);
 
-    const elems = document.body.getElementsByTagName('*');
-
-    for (const i of elems) {
-      i.style.cursor = 'url(' + cursorUrl + '), default';
-    }
+    [...document.body.getElementsByTagName('*')].forEach(
+      (elem) => (elem.style.cursor = `url(${cursorUrl}), default`)
+    );
   }
 
   /**
    * Remove o cursor do mouse
    */
   function removeCursor() {
-    const elems = document.body.getElementsByTagName('*');
-
-    for (const i of elems) {
-      i.style.removeProperty('cursor');
-    }
+    [...document.body.getElementsByTagName('*')].forEach((elem) =>
+      elem.style.removeProperty('cursor')
+    );
   }
 
   /**
@@ -55,15 +49,12 @@ function loadExtension() {
         left: `${posX}px`,
         top: `${posY}px`,
       })
-      .append($(`<span class="tooltip">SSZZZZACopiado: ${text}</span>`))
+      .append($(`<span class="tooltip">Copiado: ${text}</span>`))
       .appendTo(document.body);
 
     setTimeout(() => {
       div.addClass('fade-out');
-
-      setTimeout(() => {
-        div.remove();
-      }, fadeDuration);
+      setTimeout(() => div.remove(), fadeDuration);
     }, fadeDelay);
   }
 
@@ -72,21 +63,20 @@ function loadExtension() {
    */
   function registerListeners() {
     /**
-     * @param {Event} e
+     * @param {MouseEvent} event
      */
-    function clickListener(e) {
-      e.preventDefault();
-      const target = e.target;
+    function clickListener(event) {
+      event.preventDefault();
+      const target = event.target;
       const text = target.innerText || target.textContent;
 
       navigator.clipboard.writeText(text);
 
-      displayTooltip(e.pageX, e.pageY, text);
+      displayTooltip(event.pageX, event.pageY, text);
     }
 
     /**
-     *
-     * @param {MouseEvent} event
+     * @param {KeyboardEvent} event
      */
     function keyListener(event) {
       if (event.key === 'Escape') {
