@@ -1,10 +1,24 @@
 // Injeta a função de selecionar o texto
 function insertScript() {
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    chrome.scripting.executeScript({
-      target: { tabId: tabs[0].id },
-      function: loadExtension,
-    });
+  chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
+    try {
+      await chrome.scripting.insertCSS({
+        target: { tabId: tabs[0].id },
+        files: ["styles/tooltip.css"],
+      });
+
+      await chrome.scripting.executeScript({
+        target: { tabId: tabs[0].id },
+        files: [ 'libs/jquery-3.7.1.min.js' ],
+      });
+
+      chrome.scripting.executeScript({
+        target: { tabId: tabs[0].id },
+        function: loadExtension,
+      });
+    } catch (err) {
+      console.error(`failed to bootstrap: ${err}`);
+    }
   });
 
   // Fecha a janela da extensão ao carrega-la
